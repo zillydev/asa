@@ -1,6 +1,8 @@
 # Asa
 
-Chrome/Edge "New Tab" page. Based on [Clear Morning](https://github.com/SaltyAom/clear-morning).
+Chrome/Edge "New Tab" page extension. Based on [Clear Morning](https://github.com/SaltyAom/clear-morning).
+
+<img width="3420" height="2146" alt="screenshot-1771258894194" src="https://github.com/user-attachments/assets/1d14912f-0e0f-468b-a068-2faaa3cfb723" />
 
 Features:
 
