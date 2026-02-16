@@ -1,0 +1,167 @@
+/* ===================================
+   SEARCH BOX
+   =================================== */
+
+#search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+#search svg {
+  width: 24px;
+  height: 24px;
+}
+
+#search > .icon {
+  color: currentColor;
+  margin: 0 12px 0 16px;
+}
+
+#search > .input {
+  display: flex;
+  flex: 1;
+  height: inherit;
+  font-weight: 400;
+  padding: 0;
+  color: currentColor;
+  appearance: none;
+  font-size: 24px;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  user-select: none;
+}
+
+#search > .input::placeholder {
+  color: #fff;
+  font-weight: 400;
+}
+
+#search > .submit {
+  appearance: none;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  color: currentColor;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  transition:
+    color 0.15s ease-out,
+    background-color 0.15s ease-out;
+  cursor: pointer;
+}
+
+#search > .submit:hover,
+#search > .submit:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===================================
+   SEARCH ICON ELEMENTS
+   =================================== */
+
+.input-search-element {
+  position: relative;
+  aspect-ratio: 1;
+  height: 100%;
+}
+
+.input-search-element-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===================================
+   SUGGESTION DROPDOWN
+   =================================== */
+
+#suggestion {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(50vh - 64px);
+  color: #fff;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.125);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  overflow-y: auto;
+}
+
+.suggest {
+  width: 100%;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 400;
+  text-decoration: none;
+  gap: 4px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  outline: none;
+  transition:
+    background-color 0.12s ease-out,
+    border-color 0.12s ease-out;
+  cursor: pointer;
+}
+
+.suggest:hover,
+.suggest:focus {
+  background-color: rgba(255, 255, 255, 0.125);
+}
+
+.suggest:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.suggest:focus {
+  border-color: #fff;
+}
+
+.suggest--browser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.suggest__icon {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.suggest__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===================================
+   ENGINE CONTAINER
+   =================================== */
+
+#engine {
+  position: relative;
+  margin-top: 8px;
+}

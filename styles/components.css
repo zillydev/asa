@@ -1,0 +1,115 @@
+/* ===================================
+   WEATHER STATUS DISPLAY
+   =================================== */
+
+#status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  color: #fff;
+  transform: translateY(-16px);
+  user-select: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  cursor: default;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#status > .status > span {
+  margin-left: 4px;
+}
+
+#weather-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#weather-icon > svg {
+  padding: 0.125rem;
+}
+
+/* ===================================
+   PIN SECTION
+   =================================== */
+
+#pin {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+  user-select: none;
+}
+
+#pin > a,
+#pin > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.125);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  transition: transform 0.125s ease-out;
+}
+
+#pin > a:hover,
+#pin > a:focus,
+#pin > button:hover,
+#pin > a:focus {
+  transform: scale(1.2);
+  outline-color: #fff;
+  outline-offset: 4px;
+  outline-width: 1px;
+}
+
+#pin > a > svg {
+  position: absolute;
+  padding: 8px;
+}
+
+/* ===================================
+   ANIMATIONS & TRANSITIONS
+   =================================== */
+
+.transition {
+  transition:
+    opacity 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.fade-out-up {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.fade-out-down {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+
+.p-0\.5 {
+  padding: 0.125rem;
+}

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Asa",
+  "version": "1.0.0",
+  "description": "New tab page",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["geolocation", "topSites", "bookmarks"],
+  "host_permissions": [
+    "https://api.open-meteo.com/*",
+    "https://suggestqueries.google.com/*"
+  ]
+}

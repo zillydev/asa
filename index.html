@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>New Tab</title>
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://google.com" />
+    <link rel="preconnect" href="https://suggestqueries.google.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/search.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+
+    <!-- JavaScript Modules -->
+    <script src="./scripts/icons.js"></script>
+    <script src="./scripts/config.js"></script>
+    <script src="./scripts/core.js"></script>
+    <script src="./scripts/background.js"></script>
+    <script src="./scripts/clock.js"></script>
+    <script src="./scripts/search.js"></script>
+    <script src="./scripts/weather.js"></script>
+    <script src="./scripts/main.js"></script>
+  </head>
+
+  <!-- Suggestion Templates -->
+  <template id="t-suggest">
+    <a class="suggest"></a>
+  </template>
+  <template id="t-suggest-browser">
+    <a class="suggest suggest--browser">
+      <svg
+        class="suggest__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path
+          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+        ></path>
+      </svg>
+      <span class="suggest__label"></span>
+    </a>
+  </template>
+
+  <body id="opened">
+    <div id="overlay"></div>
+    <video id="bg" autoplay muted loop></video>
+    <img id="bg-image" alt="Background" />
+
+    <main id="app">
+      <h1
+        id="time"
+        style="cursor: pointer"
+        title="Click to toggle 12/24 hour format"
+      >
+        <span id="hour">9</span>:<span id="minute">41</span
+        ><span id="ampm"></span>
+      </h1>
+
+      <button id="status">
+        <div class="status" title="temperature">
+          <div id="weather-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"
+              ></path>
+            </svg>
+          </div>
+          <span id="temperature">-</span>°
+        </div>
+
+        <div class="status" title="rain forecast">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="p-0.5"
+          >
+            <path
+              d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"
+            ></path>
+          </svg>
+          <span id="rain">-</span>%
+        </div>
+
+        <div class="status" title="uv index">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="p-0.5"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <span id="uv-index">Click to activate</span>
+        </div>
+      </button>
+
+      <div id="engine">
+        <form id="search">
+          <div class="input-search-element">
+            <div class="input-search-element-inner transition" id="search-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div
+              class="input-search-element-inner transition fade-out-down"
+              id="search-icon-override"
+            ></div>
+          </div>
+          <input
+            id="search-value"
+            autocomplete="off"
+            autocorrect="off"
+            autofocus
+            class="input"
+            placeholder="Search"
+            type="text"
+          />
+          <button id="search-submit" class="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-send"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+
+        <section id="suggestion" style="display: none"></section>
+
+        <section id="pin"></section>
+      </div>
+    </main>
+  </body>
+</html>
